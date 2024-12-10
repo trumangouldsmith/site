@@ -8,23 +8,32 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 
-
 <body>
 
     <header>
         <h1>Truman's Blog</h1>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="posts.html">Posts</a>
-        </nav>
     </header>
 
-    <main>
-        <p>this is a cool visualization of a matrix as a function on a vector!</p>
-        <iframe src="https://www.desmos.com/calculator/qpcsdow6ef?embed" width="500" height="500" style="border: 1px solid #ccc" frameborder=0></iframe>
-    </main>
+    <div class="main-container">
+        <!-- Left-side Navigation Bar -->
+        <nav class="sidebar">
+            <h2>Recent Posts</h2>
+            <ul>
+                <li><a href="post1.html">Post 1 - Some interesting title</a></li>
+                <li><a href="post2.html">Post 2 - Another cool post</a></li>
+                <li><a href="post3.html">Post 3 - Yet another post</a></li>
+                <!-- Add more posts as needed -->
+            </ul>
+        </nav>
+
+        <!-- Main Content Area -->
+        <div class="content">
+            <h2>Welcome to Truman's Blog!</h2>
+            <p>This is a cool visualization of a matrix as a function on a vector!</p>
+            <iframe src="https://www.desmos.com/calculator/qpcsdow6ef?embed" width="500" height="500"></iframe>
+        </div>
+    </div>
 
 </body>
 
 </html>
-
