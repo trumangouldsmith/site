@@ -17,7 +17,10 @@
     border-radius: 20px;
     background: white;
   }
-  
+
+  .header h2{
+    font-size: 30px;
+  }
   .header h3{
     font-size: 20px;
     font-style: italic;
