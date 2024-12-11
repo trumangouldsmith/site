@@ -1,96 +1,137 @@
 * {
-    box-sizing: border-box;
-  }
-  
-  body {
-    font-family: Georgia;
-    padding: 20px;
-    background: #a0a0a0;
-  }
-  
-  /* Header/Blog Title */
-  .header {
-    padding: 10px;
-    font-size: 40px;
-    text-align: center;
-    border: 2px solid #ffffff;
-    border-radius: 20px;
-    background: white;
-  }
-
-  .header h2{
-    font-size: 30px;
-  }
-  .header h3{
-    font-size: 20px;
-    font-style: italic;
-  }
-
-  /* Create two unequal columns that floats next to each other */
-  /* Left column */
-  .leftcolumn {
-    float: left;
-    width: 75%;
-  }
-  
-  /* Right column */
-  .rightcolumn {
-    float: left;
-    width: 25%;
-    padding-left: 20px;
-  }
-  
-  /* Fake image */
-  .fakeimg {
-    background-color: #d7d7d7;
-    width: 100%;
-    padding: 20px;
-    border: 2px solid #ffffff;
-    border-radius: 20px;
-  }
-
-  .cardimg {
-    width: 100%; /* Make image responsive */
-    height: 240px; /* Maintain aspect ratio */
-    border: 2px solid #ffffff;
-    border-radius: 20px;
-    object-fit: cover;
-    filter: brightness(80%);
+  box-sizing: border-box;
 }
 
-  
-  /* Add a card effect for articles */
-  .card {
-    background-color: white;
-    padding: 20px;
-    margin-top: 20px;
-    border: 2px solid #ffffff;
-    border-radius: 20px;
-  
-  }
-  
-  /* Clear floats after the columns */
-  .row:after {
-    content: "";
-    display: table;
-    clear: both;
-  }
-  
-  /* Footer */
-  .footer {
-    padding: 20px;
-    text-align: center;
-    background: #ddd;
-    margin-top: 20px;
-    border: 2px solid #ddd;
-    border-radius: 20px;
+body {
+  font-family: Georgia;
+  padding: 20px;
+  background: #a0a0a0;
+}
 
+/* Header/Blog Title */
+.header {
+  padding: 10px;
+  font-size: 40px;
+  text-align: center;
+  border: 2px solid #ffffff;
+  border-radius: 20px;
+  background: white;
+}
+
+.header h2 {
+  font-size: 30px;
+}
+
+.header h3 {
+  font-size: 20px;
+  font-style: italic;
+}
+
+/* Create two unequal columns that floats next to each other */
+/* Left column */
+.leftcolumn {
+  float: left;
+  width: 75%;
+}
+
+/* Right column */
+.rightcolumn {
+  float: left;
+  width: 25%;
+  padding-left: 20px;
+}
+
+/* Fake image */
+.fakeimg {
+  background-color: #d7d7d7;
+  width: 100%;
+  padding: 20px;
+  border: 2px solid #ffffff;
+  border-radius: 20px;
+}
+
+.cardimg {
+  width: 100%; /* Make image responsive */
+  height: 240px; /* Maintain aspect ratio */
+  border: 2px solid #ffffff;
+  border-radius: 20px;
+  object-fit: cover;
+  filter: brightness(80%);
+}
+
+/* Add a card effect for articles */
+.card {
+  background-color: white;
+  padding: 20px;
+  margin-top: 20px;
+  border: 2px solid #ffffff;
+  border-radius: 20px;
+  position: relative; /* Needed for absolute positioning of the "Read More" sliver */
+  overflow: hidden; /* To make sure the sliver doesn't overflow the card */
+  transition: 0.5s;
+}
+
+.leftcolumn .card {
+  cursor: pointer;
+}
+
+/* Change background on hover */
+.leftcolumn .card:hover {
+  background-color: rgb(132, 132, 132);
+  border: 2px solid rgb(132, 132, 132);
+}
+
+/* "Read More" Sliver */
+.leftcolumn .card .read-more {
+  position: absolute;
+  top: 0;
+  right: -10%;
+  width: 10%; /* Make the sliver 10-20% of the width of the card */
+  height: 100%;
+  background-color: #192b24;
+  color: white;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: bold;
+  opacity: 0; /* Hidden by default */
+  transition: opacity 0.3s ease, right 0.3s ease;
+  cursor: pointer;
+}
+
+.leftcolumn .card:hover .read-more {
+  opacity: 1; /* Show on hover */
+  right: 0; /* Move the sliver into view */
+}
+
+.leftcolumn .card:hover {
+  padding-right: 120px; /* Make space for the sliver */
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Footer */
+.footer {
+  padding: 20px;
+  text-align: center;
+  background: #ddd;
+  margin-top: 20px;
+  border: 2px solid #ddd;
+  border-radius: 20px;
+}
+
+/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 800px) {
+  .leftcolumn,
+  .rightcolumn {
+    width: 100%;
+    padding: 0;
   }
-  
-  /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
-  @media screen and (max-width: 800px) {
-    .leftcolumn, .rightcolumn {
-      width: 100%;
-      padding: 0;
-    }
-  }
+}
