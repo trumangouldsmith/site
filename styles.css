@@ -97,8 +97,11 @@ body {
   font-size: 18px;
   font-weight: bold;
   opacity: 0; /* Hidden by default */
-  transition: opacity 0.3s ease, right 0.3s ease;
+  transition: opacity 0.3s ease, right 0.3s ease, background-color 0.3s ease, color 0.3s ease;;
   cursor: pointer;
+}
+.leftcolumn .card .read-more:hover {
+background-color: #2b5142;
 }
 
 .leftcolumn .card:hover .read-more {
@@ -116,6 +119,12 @@ body {
   display: table;
   clear: both;
 }
+
+.no-style-link {
+  text-decoration: none;  /* Remove underline */
+  color: inherit;         /* Inherit color from the parent element */
+}
+
 
 /* Footer */
 .footer {
