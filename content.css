@@ -1,12 +1,25 @@
-/* Disable hover effect on the card in the subpage */
+/* ============================================================
+   DISABLE HOVER EFFECTS ON CARD IN THE SUBPAGE
+   ============================================================ */
+/* Reset the hover effect for the card on subpage */
 .middlecolumn .card:hover {
-  background-color: #FFFFFF; /* Reset any background change */
-  box-shadow: none; /* Remove shadow effect */
-  padding-right: 20px; /* Reset padding to default */
+  background-color: #FFFFFF; /* Reset background color to default */
+  padding-right: 20px; /* Reset padding-right to default */
 }
 
-/* Optional: Reset hover effects for other elements, like image hover */
+/* Optional: Reset hover effects for the card image */
 .middlecolumn .cardimg:hover {
-  filter: none; /* Remove any filter changes */
-  box-shadow: none; /* Remove any shadow on hover */
+  filter: none; /* Remove any filter effect (e.g., brightness or saturation) */
+}
+
+
+/* ============================================================
+   BODY STYLING
+   ============================================================ */
+body {
+  font-family: 'Poppins', sans-serif; /* Set default font to Poppins */
+  background-color: #FFFAF0; /* Light cream background color */
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+  padding-top: 100px; /* Increase space for the fixed header */
 }
