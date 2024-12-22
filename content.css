@@ -1,0 +1,9 @@
+/* Disable hover animation on content page */
+/* Ensure this is only active on the content page */
+body.content-page .row .middlecolumn .card:hover {
+    background-color: inherit; /* Remove background color change */
+    box-shadow: none;          /* Remove box shadow */
+    transform: none;           /* Remove any transform/animation effects */
+    transition: none;          /* Disable transition animation */
+  }
+  
