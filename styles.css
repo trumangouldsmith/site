@@ -1,94 +1,137 @@
+/* Import playful fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Lobster&display=swap');
+
+/* Global settings */
 * {
   box-sizing: border-box;
 }
 
 body {
-  font-family: Georgia;
-  padding: 20px;
-  background: #a0a0a0;
+  font-family: 'Poppins', sans-serif;
+  background-color: #FFFAF0; /* Light cream background */
+  margin: 0;
+  padding: 0;
+  padding-top: 160px; /* Increase space for fixed header */
 }
+
+/* .body.shrink {
+  padding-top: 15%;
+} */
 
 /* Header/Blog Title */
 .header {
-  padding: 10px;
-  font-size: 40px;
+  padding: 20px;
+  font-size: 50px;
+  font-family: 'Lobster', cursive;
+  color: #fff;
+  margin: 0;
   text-align: center;
-  border: 2px solid #ffffff;
-  border-radius: 20px;
-  background: white;
+  background-color: #FF6F61; /* Soft coral color */
+  transition: font-size 0.3s ease-in-out, padding 0.3s ease-in-out; /* Smooth transition for font-size and padding */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
+/* When the header shrinks */
+.header.shrink {
+  font-size: 30px; /* Shrinks font size */
+  padding: 10px;  /* Shrinks padding */
+}
+
+/* Header Text */
 .header h2 {
-  font-size: 30px;
+  font-size: 60px;
+  margin: 0;
 }
 
 .header h3 {
   font-size: 20px;
+  font-weight: 300;
+  color: #F0F0F0;
   font-style: italic;
 }
 
-/* Create two unequal columns that floats next to each other */
+
+/* Layout for columns */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+.leftcolumn, .middlecolumn, .rightcolumn {
+  padding: 20px;
+}
+
 /* Left column */
 .leftcolumn {
-  float: left;
-  width: 75%;
+  flex: 1;
+  min-width: 20%;
+}
+
+/* Middle column */
+.middlecolumn {
+  flex: 3;
+  min-width: 60%;
+  padding-left: 20px;
 }
 
 /* Right column */
 .rightcolumn {
-  float: left;
-  width: 25%;
+  flex: 1;
+  min-width: 20%;
   padding-left: 20px;
 }
 
-/* Fake image */
-.fakeimg {
-  background-color: #d7d7d7;
-  width: 100%;
-  padding: 20px;
-  border: 2px solid #ffffff;
-  border-radius: 20px;
-}
-
+/* Card image */
 .cardimg {
-  width: 100%; /* Make image responsive */
-  height: 240px; /* Maintain aspect ratio */
-  border: 2px solid #ffffff;
-  border-radius: 20px;
+  width: 100%;
+  height: 200px;
   object-fit: cover;
-  filter: brightness(80%);
+  border-radius: 10px;
+  transition: all 0.4s ease-in-out; /* Smooth transition for all properties */
+
 }
 
-/* Add a card effect for articles */
+.cardimg:hover {
+  filter: brightness(0.8) saturate(1.3); /* Increase brightness and saturation */
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+
+}
+
+
+/* Card hover effect */
+.card:hover {
+  background-color: #f3ebeb;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  padding-right: 120px; /* Space for the sliver to slide in */
+}
+
+/* Cards */
 .card {
-  background-color: white;
+  background-color: #FFFFFF;
   padding: 20px;
   margin-top: 20px;
-  border: 2px solid #ffffff;
-  border-radius: 20px;
-  position: relative; /* Needed for absolute positioning of the "Read More" sliver */
-  overflow: hidden; /* To make sure the sliver doesn't overflow the card */
-  transition: 0.5s;
-}
-
-.leftcolumn .card {
-  cursor: pointer;
-}
-
-/* Change background on hover */
-.leftcolumn .card:hover {
-  background-color: rgb(132, 132, 132);
-  border: 2px solid rgb(132, 132, 132);
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative; /* Make sure it is positioned properly */
+  overflow: hidden; /* Prevents overflow on hover */
+  transition: all 0.4s ease-in-out; /* Smooth transition for all properties */
 }
 
 /* "Read More" Sliver */
-.leftcolumn .card .read-more {
+.read-more {
   position: absolute;
   top: 0;
-  right: -10%;
-  width: 10%; /* Make the sliver 10-20% of the width of the card */
+  right: -100%; /* Initially hidden */
+  width: 10%; /* Sliver width */
   height: 100%;
-  background-color: #192b24;
+  background-color: #ffa480; /* Soft coral */
   color: white;
   display: flex;
   text-align: center;
@@ -96,51 +139,50 @@ body {
   justify-content: center;
   font-size: 18px;
   font-weight: bold;
-  opacity: 0; /* Hidden by default */
-  transition: opacity 0.3s ease, right 0.3s ease, background-color 0.3s ease, color 0.3s ease;;
+  opacity: 0; /* Initially hidden */
+  transition: all 0.4s ease-in-out; /* Smooth transition for all properties */
   cursor: pointer;
 }
-.leftcolumn .card .read-more:hover {
-background-color: #2b5142;
+
+/* Show and slide in the "Read More" on hover */
+.card:hover .read-more {
+  opacity: 1;
+  right: 0; /* Slide in to the right */
 }
 
-.leftcolumn .card:hover .read-more {
-  opacity: 1; /* Show on hover */
-  right: 0; /* Move the sliver into view */
+/* Remove underline from links */
+a {
+  text-decoration: none; /* Remove underline for normal and visited links */
 }
-
-.leftcolumn .card:hover {
-  padding-right: 120px; /* Make space for the sliver */
-}
-
-/* Clear floats after the columns */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-.no-style-link {
-  text-decoration: none;  /* Remove underline */
-  color: inherit;         /* Inherit color from the parent element */
-}
-
 
 /* Footer */
 .footer {
   padding: 20px;
+  background-color: #FF6F61; /* Soft coral */
   text-align: center;
-  background: #ddd;
+  color: white;
   margin-top: 20px;
-  border: 2px solid #ddd;
-  border-radius: 20px;
+  border-radius: 15px;
 }
 
-/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
+/* Mobile responsive */
 @media screen and (max-width: 800px) {
-  .leftcolumn,
-  .rightcolumn {
+  .leftcolumn, .middlecolumn, .rightcolumn {
     width: 100%;
-    padding: 0;
+    padding: 10px;
+  }
+
+  .header.shrink {
+    font-size: 25px; /* Even smaller for mobile */
+  }
+
+  /* Fix for layout stacking in mobile */
+  .row {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .middlecolumn {
+    padding-left: 0;
   }
 }
