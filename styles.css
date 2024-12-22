@@ -152,8 +152,11 @@ body {
 
 /* Remove underline from links */
 a {
-  text-decoration: none; /* Remove underline for normal and visited links */
+  text-decoration: none;   /* Removes underline */
+  color: inherit;          /* Inherits the color from the parent element */
+  outline: none;           /* Removes the outline when focused */
 }
+
 
 /* Footer */
 .footer {
