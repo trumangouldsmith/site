@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Future Finances Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Future Finances Calculator</h1>
+    <form id="financeForm">
+        <label>Current Age:</label>
+        <input type="number" id="currentAge" required><br>
+
+        <label>Retirement Age:</label>
+        <input type="number" id="retirementAge" required><br>
+
+        <label>Death Age:</label>
+        <input type="number" id="deathAge" required><br>
+
+        <label>Annual Salary:</label>
+        <input type="number" id="annualSalary" required><br>
+
+        <label>Annual Salary Increase (e.g., 0.03 for 3%):</label>
+        <input type="number" step="0.01" id="salaryIncrease" required><br>
+
+        <label>Savings Rate (e.g., 0.20 for 20%):</label>
+        <input type="number" step="0.01" id="savingsRate" required><br>
+
+        <label>Interest Rate (e.g., 0.05 for 5%):</label>
+        <input type="number" step="0.01" id="interestRate" required><br>
+
+        <label>Account Balance:</label>
+        <input type="number" id="accountBalance" required><br>
+
+        <button type="button" onclick="calculate()">Calculate</button>
+    </form>
+
+    <h2>Results:</h2>
+    <p id="result"></p>
+
+    <script>
+        function calculate() {
+            const currentAge = parseInt(document.getElementById('currentAge').value);
+            const retirementAge = parseInt(document.getElementById('retirementAge').value);
+            const deathAge = parseInt(document.getElementById('deathAge').value);
+            const annualSalary = parseFloat(document.getElementById('annualSalary').value);
+            const salaryIncrease = parseFloat(document.getElementById('salaryIncrease').value);
+            const savingsRate = parseFloat(document.getElementById('savingsRate').value);
+            const interestRate = parseFloat(document.getElementById('interestRate').value);
+            const accountBalance = parseFloat(document.getElementById('accountBalance').value);
+
+            const result = calculateFutureFinances(currentAge, retirementAge, deathAge, annualSalary, salaryIncrease, savingsRate, interestRate, accountBalance);
+
+            document.getElementById('result').innerHTML = `
+                <p>You will have $${result.accountBalance} in your account at age ${retirementAge}.</p>
+                <p>You can withdraw $${result.monthlyPayment} per month after retirement until death at age ${deathAge}.</p>
+            `;
+        }
+    </script>
+</body>
+</html>
+
+
+<script>
+    function calculate() {
+        const currentAge = parseInt(document.getElementById('currentAge').value);
+        const retirementAge = parseInt(document.getElementById('retirementAge').value);
+        const deathAge = parseInt(document.getElementById('deathAge').value);
+        const annualSalary = parseFloat(document.getElementById('annualSalary').value);
+        const salaryIncrease = parseFloat(document.getElementById('salaryIncrease').value);
+        const savingsRate = parseFloat(document.getElementById('savingsRate').value);
+        const interestRate = parseFloat(document.getElementById('interestRate').value);
+        const accountBalance = parseFloat(document.getElementById('accountBalance').value);
+
+        const result = calculateFutureFinances(currentAge, retirementAge, deathAge, annualSalary, salaryIncrease, savingsRate, interestRate, accountBalance);
+
+        document.getElementById('result').innerHTML = `
+            <p>You will have $${result.accountBalance} in your account at age ${retirementAge}.</p>
+            <p>You can withdraw $${result.monthlyPayment} per month after retirement until death at age ${deathAge}.</p>
+        `;
+    }
+
+    function calculateFutureFinances(currentAge, retirementAge, deathAge, realizedAnnualSalary, annualSalaryIncrease, savingsRate, interestRate, accountBalance) {
+        let totalYears = retirementAge - currentAge;
+        let totalMonths = 0;
+
+        for (let month = 0; month < totalYears * 12; month++) {
+            totalMonths++;
+            if (totalMonths % 12 === 0) {
+                realizedAnnualSalary *= (1 + annualSalaryIncrease);
+            }
+            
+            accountBalance += ((realizedAnnualSalary / 12) * savingsRate);
+            accountBalance *= (1 + (interestRate / 12));
+        }
+
+        let retirementInterestRate = 0.04;
+        let totalYearsAfterRetirement = deathAge - retirementAge;
+        let numerator = (accountBalance * (retirementInterestRate / 12));
+        let denominator = (1 - (1 + (retirementInterestRate / 12)) ** (-totalYearsAfterRetirement * 12));
+        let monthlyPayment = numerator / denominator;
+
+        return {
+            accountBalance: accountBalance.toFixed(2),
+            monthlyPayment: monthlyPayment.toFixed(2)
+        };
+    }
+</script>
