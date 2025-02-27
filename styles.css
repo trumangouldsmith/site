@@ -141,6 +141,18 @@
      overflow: hidden;
      transition: all 0.4s ease-in-out;
    }
+
+      /* Fincalc card content styling */
+      .fincalccard {
+        background-color: #FFFFFF;
+        padding: 20px;
+        margin-top: 20px;
+        border-radius: 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        position: relative;
+        overflow: hidden;
+        transition: all 0.4s ease-in-out;
+      }
    
    
    /* ============================================================
