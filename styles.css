@@ -142,8 +142,8 @@
      transition: all 0.4s ease-in-out;
    }
 
-      /* Fincalc card content styling */
-      .fincalccard {
+      /* Retirement calc card content styling */
+      .retirementcalccard {
         background-color: #FFFFFF;
         padding: 20px;
         margin-top: 20px;
