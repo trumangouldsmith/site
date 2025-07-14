@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Initiative Tracker for DnD</title>
+
+  <link rel="apple-touch-icon" sizes="180x180" href="resources/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="resources/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="resources/favicon-16x16.png">
+
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="content.css">
+
+  <!-- Include Font Awesome CDN -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  <style>
+    #turnQueue {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+
+<body class="content-page">
+  <div class="header">
+    <a href="/" class="home-icon">
+      <i class="fas fa-home"></i>
+    </a>
+    <h2>Initiative</h2>
+  </div>
+
+  <div class="row">
+
+    <div class="leftcolumn">
+      <div class="card">
+        <h2>About Me</h2>
+        <p>This section was in the html template I used. Make up an interesting story or something.</p>
+      </div>
+    </div>
+
+    <div class="middlecolumn">
+      <div class="retirementcalccard">
+        <h1>Initiative Tracker</h1>
+
+        <div id="characterSetup">
+          <form id="initForm" onsubmit="event.preventDefault(); addCharacter();">
+            <label>Name:</label><br>
+            <input type="text" id="name" onkeypress="if(event.key === 'Enter'){ event.preventDefault(); document.getElementById('initiative').focus(); }"><br>
+            <label>Initiative:</label><br>
+            <input type="number" step="0.1" id="initiative" onkeypress="if(event.key === 'Enter'){ event.preventDefault(); addCharacter(); }"><br><br>
+            <button type="button" onclick="addCharacter()">Add Character</button>
+            <button type="button" onclick="startCombat()">Start Combat</button>
+            <button type="button" onclick="resetTracker()">Reset</button>
+          </form>
+          <ul id="characterList"></ul>
+        </div>
+
+        <div id="initiativeOrder" style="display:none;">
+          <h2>Combat Order</h2>
+          <div id="turnQueue"></div>
+          <button onclick="undoLastMove()">Undo</button>
+          <button onclick="resetTracker()">Reset</button>
+        </div>
+
+        <script>
+          let characters = [];
+          let lastMove = null;
+
+          function addCharacter() {
+            const name = document.getElementById('name').value;
+            const initiative = parseFloat(document.getElementById('initiative').value);
+            if (!name || isNaN(initiative)) return;
+            characters.push({ name, initiative });
+            characters.sort((a, b) => b.initiative - a.initiative);
+            renderCharacterList();
+            document.getElementById('name').value = '';
+            document.getElementById('initiative').value = '';
+            document.getElementById('name').focus();
+          }
+
+          function renderCharacterList() {
+            const list = document.getElementById('characterList');
+            list.innerHTML = '';
+            characters.forEach((char) => {
+              const li = document.createElement('li');
+              li.textContent = `${char.name} (Init: ${char.initiative})`;
+              list.appendChild(li);
+            });
+          }
+
+          function startCombat() {
+            if (characters.length === 0) return;
+            document.getElementById('characterSetup').style.display = 'none';
+            document.getElementById('initiativeOrder').style.display = 'block';
+            renderInitiativeQueue();
+          }
+
+          function renderInitiativeQueue() {
+            const queue = document.getElementById('turnQueue');
+            queue.innerHTML = '';
+            characters.forEach((char, index) => {
+              const card = document.createElement('div');
+              card.className = 'card';
+              card.textContent = char.name + ' (Init: ' + char.initiative + ')';
+              card.style.cursor = 'pointer';
+              card.onclick = () => {
+                lastMove = { char: characters[index], from: index };
+                const moved = characters.splice(index, 1)[0];
+                characters.push(moved);
+                renderInitiativeQueue();
+              };
+              queue.appendChild(card);
+            });
+          }
+
+          function undoLastMove() {
+            if (!lastMove) return;
+            const index = characters.findIndex(c => c.name === lastMove.char.name && c.initiative === lastMove.char.initiative);
+            if (index !== -1) {
+              const [char] = characters.splice(index, 1);
+              characters.splice(lastMove.from, 0, char);
+              renderInitiativeQueue();
+              lastMove = null;
+            }
+          }
+
+          function resetTracker() {
+            characters = [];
+            lastMove = null;
+            document.getElementById('characterList').innerHTML = '';
+            document.getElementById('turnQueue').innerHTML = '';
+            document.getElementById('characterSetup').style.display = 'block';
+            document.getElementById('initiativeOrder').style.display = 'none';
+            document.getElementById('name').value = '';
+            document.getElementById('initiative').value = '';
+            document.getElementById('name').focus();
+          }
+        </script>
+
+      </div>
+    </div>
+
+    <div class="rightcolumn">
+      <div class="card">
+        <h2>Favorite Posts</h2>
+        <p>None so far.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <h2>Footer? Barely know her...</h2>
+  </div>
+
+  <script>
+    function adjustMainContentPadding() {
+      var headerHeight = document.querySelector('.header').offsetHeight;
+      document.querySelector('.main-content').style.paddingTop = headerHeight + 'px';
+    }
+
+    window.addEventListener('load', adjustMainContentPadding);
+    window.addEventListener('resize', adjustMainContentPadding);
+
+    window.onscroll = function () {
+      var header = document.querySelector('.header');
+      requestAnimationFrame(function () {
+        if (window.pageYOffset > 100) {
+          header.classList.add('shrink');
+        } else {
+          header.classList.remove('shrink');
+        }
+        adjustMainContentPadding();
+      });
+    };
+  </script>
+</body>
+
+</html>
