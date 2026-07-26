@@ -1,283 +1,307 @@
-/* ============================================================
-   IMPORT PLAYFUL FONTS
-   ============================================================ */
-   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Lobster&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=Poppins:wght@400;500;600&display=swap');
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  font-family: 'Poppins', sans-serif;
+  color: #2C1810;
+  background-color: #F5F0E8;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
 
 
-   /* ============================================================
-      GLOBAL SETTINGS
-      ============================================================ */
-   * {
-     box-sizing: border-box; /* Ensures consistent box-sizing model across all elements */
-   }
-   
-   html, body {
-     height: 100%; /* Ensure both html and body take the full height of the viewport */
-     margin: 0;
-     padding: 0;
-     font-family: 'Poppins', sans-serif; /* Default font */
-   }
-   
-   
-   /* ============================================================
-      BODY SETTINGS - FLEX CONTAINER FOR STICKY FOOTER
-      ============================================================ */
-   body {
-     display: flex;
-     flex-direction: column;
-     background-color: #FFFAF0; /* Soft background color */
-   }
-   
-   
-   /* ============================================================
-      HEADER / BLOG TITLE
-      ============================================================ */
-   .header {
-     padding: 20px;
-     font-size: 50px;
-     font-family: 'Lobster', cursive;
-     color: #fff;
-     margin: 0;
-     text-align: center;
-     background-color: #FF6F61; /* Soft coral color */
-     transition: font-size 0.3s ease-in-out, padding 0.3s ease-in-out; /* Smooth transition for font-size and padding */
-     position: fixed;
-     top: 0;
-     left: 0;
-     width: 100%;
-     z-index: 1000;
-     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Shadow effect for header */
-   }
-   
-   /* Header shrink effect */
-   .header.shrink {
-     font-size: 30px; /* Shrinks font size */
-     padding: 10px;  /* Shrinks padding */
-   }
-   
-   /* Header text styling */
-   .header h2 {
-     font-size: 60px;
-     margin: 0;
-   }
-   
-   .header h3 {
-     font-size: 20px;
-     font-weight: 300;
-     color: #F0F0F0;
-     font-style: italic;
-   }
-   
-   
-   /* ============================================================
-      LAYOUT FOR COLUMNS (FLEXBOX)
-      ============================================================ */
-   .row {
-     display: flex;
-     flex-wrap: wrap;
-     justify-content: space-between;
-     padding: 0 20px;
-   }
-   
-   /* Column styling */
-   .leftcolumn, .middlecolumn, .rightcolumn {
-     padding: 20px;
-   }
-   
-   /* Left column - occupies 25% of the width */
-   .leftcolumn {
-     flex: 1;
-     min-width: 25%;
-   }
-   
-   /* Middle column - main content area, takes up more space */
-   .middlecolumn {
-     flex: 3;
-     min-width: 50%;
-     padding-left: 20px;
-   }
-   
-   /* Right column - occupies 25% of the width */
-   .rightcolumn {
-     flex: 1;
-     min-width: 25%;
-     padding-left: 20px;
-   }
-   
-   
-   /* ============================================================
-      CARD STYLING
-      ============================================================ */
-   /* Card image */
-   .cardimg {
-     width: 100%;
-     height: 200px;
-     object-fit: cover;
-     border-radius: 10px;
-     transition: all 0.4s ease-in-out; /* Smooth transition for all properties */
-   }
-   
-   /* Hover effect for card images */
-   .middlecolumn .cardimg:hover {
-     filter: brightness(0.8) saturate(1.3); /* Increase brightness and saturation */
-     box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1); /* Shadow for depth */
-   }
-   
-   /* Card hover effect */
-   .middlecolumn .card:hover {
-     background-color: #f3ebeb; /* Light background on hover */
-     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-     padding-right: 120px; /* Space for the sliver to slide in */
-   }
-   
-   /* Card content styling */
-   .card {
-     background-color: #FFFFFF;
-     padding: 20px;
-     margin-top: 20px;
-     border-radius: 15px;
-     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-     position: relative;
-     overflow: hidden;
-     transition: all 0.4s ease-in-out;
-   }
+/* ---- HEADER ---- */
 
-      /* Retirement calc card content styling */
-      .retirementcalccard {
-        background-color: #FFFFFF;
-        padding: 20px;
-        margin-top: 20px;
-        border-radius: 15px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        position: relative;
-        overflow: hidden;
-        transition: all 0.4s ease-in-out;
-      }
-   
-   
-   /* ============================================================
-      "READ MORE" SLIVER - SHOWS ON HOVER
-      ============================================================ */
-   .read-more {
-     position: absolute;
-     top: 0;
-     right: -100%; /* Initially hidden */
-     width: 10%; /* Sliver width */
-     height: 100%;
-     background-color: #ffa480; /* Soft coral */
-     color: white;
-     display: flex;
-     text-align: center;
-     align-items: center;
-     justify-content: center;
-     font-size: 18px;
-     font-weight: bold;
-     opacity: 0; /* Initially hidden */
-     transition: all 0.4s ease-in-out; /* Smooth transition for all properties */
-     cursor: pointer;
-   }
-   
-   /* Show and slide in the "Read More" sliver on card hover */
-   .card:hover .read-more {
-     opacity: 1;
-     right: 0; /* Slide in to the right */
-   }
-   
-   
-   /* ============================================================
-      TEXT STYLING WITHIN CARDS
-      ============================================================ */
-   /* Remove default margin from h2 elements */
-   .card h2 {
-     margin: 0;
-     padding: 0;
-     font-size: 24px;
-     line-height: 1.2;
-   }
-   
-   /* Optional: Add spacing below h2 */
-   .card h2 {
-     margin-bottom: 10px;
-   }
-   
-   /* Optional: Padding around paragraphs */
-   .card p {
-     margin-top: 10px;
-   }
-   
-   
-   /* ============================================================
-      LINK STYLING
-      ============================================================ */
-   a {
-     text-decoration: none; /* Removes underline */
-     color: inherit; /* Inherit color from the parent element */
-     outline: none; /* Remove outline on focus */
-   }
-   
-   
-   /* ============================================================
-      HOME ICON
-      ============================================================ */
-   .home-icon {
-     position: absolute;
-     left: 20px;
-     top: 50%;
-     transform: translateY(-50%); /* Center vertically */
-     font-size: 50px;
-     color: #fff;
-     transition: transform 0.3s ease;
-   }
-   
-   .home-icon:hover {
-     transform: translateY(-50%) scale(1.1); /* Slightly enlarge icon on hover */
-     cursor: pointer;
-   }
-   
-   
-   /* ============================================================
-      MAIN CONTENT AREA
-      ============================================================ */
-   .main-content {
-     flex-grow: 1; /* Allow the main content to grow */
-     display: flex;
-     flex-direction: column;
-   }
-   
-   
-   /* ============================================================
-      FOOTER
-      ============================================================ */
-   .footer {
-     background-color: #FF6F61;
-     color: white;
-     text-align: center;
-     padding: 20px;
-     width: 100%;
-     margin-top: auto; /* Push footer to the bottom */
-   }
-   
-   
-   /* ============================================================
-      MOBILE RESPONSIVE STYLING
-      ============================================================ */
-   @media screen and (max-width: 800px) {
-     .leftcolumn, .middlecolumn, .rightcolumn {
-       width: 100%;
-       padding: 10px;
-       padding-left: 0;
-       padding-top: 0;
-     }
-   
-     .header.shrink {
-       font-size: 25px; /* Even smaller font size on mobile */
-     }
-   
-     /* Stack layout for mobile view */
-     .row {
-       flex-direction: column;
-       align-items: center;
-       padding: 10px;
-     }
-   }
-   
+.site-header {
+  background: linear-gradient(180deg, #4E342E 0%, #3E2723 100%);
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  border-bottom: 2px solid #C9A84C;
+}
+
+.site-title {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 30px;
+  color: #F5F0E8;
+  letter-spacing: 0.5px;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+
+/* ---- LOGO BUBBLE ---- */
+
+.logo-bubble {
+  position: absolute;
+  top: -20px;
+  left: -40px;
+  width: 180px;
+  height: 180px;
+  background: radial-gradient(circle at 40% 35%, #5D4037, #3E2723);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+  border: 3px solid #C9A84C;
+  box-shadow:
+    2px 3px 14px rgba(0, 0, 0, 0.35),
+    inset 0 -2px 6px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+.logo-bubble a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.logo-bubble img {
+  width: 75%;
+  height: 75%;
+  object-fit: contain;
+  transform: rotate(-5deg) translate(3px, 3px);
+  transition: transform 0.3s ease;
+}
+
+.logo-bubble:hover img {
+  animation: pulse-rotate 0.8s ease;
+}
+
+.logo-bubble.clicked img {
+  animation: pulse-rotate 0.8s ease;
+}
+
+@keyframes pulse-rotate {
+  0%   { transform: scale(1) rotate(-5deg) translate(3px, 3px); }
+  30%  { transform: scale(1.15) rotate(7deg) translate(3px, 3px); }
+  60%  { transform: scale(1.08) rotate(-11deg) translate(3px, 3px); }
+  100% { transform: scale(1) rotate(-5deg) translate(3px, 3px); }
+}
+
+
+/* ---- PAGE LAYOUT ---- */
+
+.page-wrapper {
+  display: flex;
+  min-height: calc(100vh - 72px);
+}
+
+
+/* ---- SIDEBAR NAVIGATION ---- */
+
+.sidebar {
+  width: 64px;
+  background: linear-gradient(180deg, #4E342E 0%, #3E2723 100%);
+  border-right: 2px solid #C9A84C;
+  padding: 100px 0 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.nav-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 10px;
+  color: rgba(245, 240, 232, 0.5);
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.nav-btn:hover {
+  background-color: rgba(201, 168, 76, 0.15);
+  color: #C9A84C;
+}
+
+.nav-btn.active {
+  background-color: rgba(201, 168, 76, 0.2);
+  color: #C9A84C;
+}
+
+.nav-btn svg {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.nav-tooltip {
+  position: absolute;
+  left: calc(100% + 10px);
+  top: 50%;
+  transform: translateY(-50%);
+  background: #2C1810;
+  color: #C9A84C;
+  padding: 6px 14px;
+  border-radius: 6px;
+  border: 1px solid rgba(201, 168, 76, 0.4);
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s;
+  z-index: 100;
+}
+
+.nav-btn:hover .nav-tooltip {
+  opacity: 1;
+}
+
+
+/* ---- MAIN CONTENT ---- */
+
+.main-content {
+  flex: 1;
+  max-width: 900px;
+  margin: 32px auto;
+  padding: 0 24px;
+}
+
+
+/* ---- CONTENT SECTIONS ---- */
+
+.content-section {
+  margin-bottom: 40px;
+}
+
+.content-section:last-child {
+  margin-bottom: 0;
+}
+
+.content-section > h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px;
+  font-weight: 600;
+  color: #3E2723;
+  margin-bottom: 20px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #C9A84C;
+}
+
+
+/* ---- CARD GRID ---- */
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.content-card {
+  background: #FFFCF7;
+  border-radius: 10px;
+  padding: 24px;
+  border-left: 3px solid transparent;
+  box-shadow: 0 2px 6px rgba(44, 24, 16, 0.08);
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  display: flex;
+  flex-direction: column;
+}
+
+.content-card:hover {
+  transform: translateY(-3px);
+  border-left-color: #C9A84C;
+  box-shadow: 0 6px 20px rgba(201, 168, 76, 0.18), 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.content-card h3 {
+  font-size: 17px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #2C1810;
+}
+
+.content-card p {
+  font-size: 14px;
+  color: #5D4037;
+  line-height: 1.5;
+}
+
+.card-img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 14px;
+}
+
+.card-tag {
+  display: inline-block;
+  background: linear-gradient(135deg, #D4AA4F, #B89030);
+  color: #2C1810;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 3px 12px;
+  border-radius: 20px;
+  margin-top: auto;
+  align-self: flex-start;
+}
+
+
+/* ---- MOBILE ---- */
+
+@media screen and (max-width: 768px) {
+  .page-wrapper {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    flex-direction: row;
+    justify-content: center;
+    padding: 50px 12px 8px;
+    gap: 8px;
+    border-right: none;
+    border-bottom: 2px solid #C9A84C;
+  }
+
+  .nav-tooltip {
+    top: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .logo-bubble {
+    width: 120px;
+    height: 120px;
+    top: -10px;
+    left: -30px;
+  }
+
+  .site-title {
+    font-size: 22px;
+  }
+
+  .main-content {
+    margin: 20px 16px;
+  }
+
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+}
