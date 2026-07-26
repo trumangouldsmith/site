@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Retirement Balance Calculator</title>
+  <title>Retirement Balance Calculator - Truman Gouldsmith</title>
 
   <link rel="apple-touch-icon" sizes="180x180" href="resources/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="resources/favicon-32x32.png">
@@ -12,175 +11,252 @@
 
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="content.css">
-  
-  <!-- Include Font Awesome CDN -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 </head>
-  
-<body class="content-page">
-  <div class="header">
-    <!-- Home Icon -->
-    <a href="/" class="home-icon">
-      <i class="fas fa-home"></i> <!-- Font Awesome home icon -->
-    </a>
-    <h2>Retirement Balance Calculator</h2>
-  </div>
-  
-    <!-- Main content of the page -->
-    <div class="row">
-      
-      <div class="leftcolumn">
-        <div class="card">
-          <h2>About Me</h2>
-          <p>This section was in the html template I used. Make up an interesting story or something.</p>
-        </div>
-      </div>
-  
-      <!-- Middle Column -->
-      <div class="middlecolumn">
-          <div class="retirementcalccard">
-                <title>Retirement Balance Calculator</title>
-                <h1>Retirement Balance Calculator</h1>
-                <form id="retirementBalForm">
-                    <label>Current Age:</label><br>
-                    <input type="number" id="currentAge" value="32" required><br>
-            
-                    <label>Retirement Age:</label><br>
-                    <input type="number" id="retirementAge" value="65" required><br>
-            
-                    <label>Death Age:</label><br>
-                    <input type="number" id="deathAge" value="80" required><br>
-            
-                    <label>Annual Salary:</label><br>
-                    <input type="number" id="annualSalary" value="65000" required><br>
-            
-                    <label>Annual Salary Increase (e.g., 0.03 for 3%):</label><br>
-                    <input type="number" step="0.01" id="salaryIncrease" value="0.03" required><br>
-            
-                    <label>Savings Rate (e.g., 0.20 for 20%):</label><br>
-                    <input type="number" step="0.01" id="savingsRate" value="0.15" required><br>
-            
-                    <label>Interest Rate (e.g., 0.05 for 5%):</label><br>
-                    <input type="number" step="0.01" id="interestRate" value="0.08" required><br>
-            
-                    <label>Account Balance:</label><br>
-                    <input type="number" id="accountBalance" value="25000" required><br><br>
-            
-                    <button type="button" onclick="calculate()">Calculate</button>
-                </form>
-            
-                <h2>Results:</h2>
-                <p id="result"></p>
-            
-                <script>
-                    function calculate() {
-                        const currentAge = parseInt(document.getElementById('currentAge').value);
-                        const retirementAge = parseInt(document.getElementById('retirementAge').value);
-                        const deathAge = parseInt(document.getElementById('deathAge').value);
-                        const annualSalary = parseFloat(document.getElementById('annualSalary').value);
-                        const salaryIncrease = parseFloat(document.getElementById('salaryIncrease').value);
-                        const savingsRate = parseFloat(document.getElementById('savingsRate').value);
-                        const interestRate = parseFloat(document.getElementById('interestRate').value);
-                        const accountBalance = parseFloat(document.getElementById('accountBalance').value);
-            
-                        const result = calculateRetirementBal(currentAge, retirementAge, deathAge, annualSalary, salaryIncrease, savingsRate, interestRate, accountBalance);
-            
-                        document.getElementById('result').innerHTML = `
-                        <p>You will have $${Number(result.accountBalance).toLocaleString()} in your account at age ${retirementAge}.</p>
-                        <p>You can withdraw $${Number(result.monthlyPayment).toLocaleString()} per month after retirement until death at age ${deathAge}.</p>
-                        `;
-                    }
-                </script>
-            
-          </div>
-        </a>
+<body>
 
-      </div> <!-- end of middle column-->
-      
-      <!-- Right Column -->
-      <div class="rightcolumn">
-        <div class="card">
-          <h2>Favorite Posts</h2>
-          <p>None so far.</p>
-        </div>
-      </div>
-    </div> <!-- end of row -->
-  
-    <!-- Footer Section -->
-    <div class="footer">
-      <h2>Footer? Barely know her...</h2>
+  <header class="site-header">
+    <div class="logo-bubble">
+      <a href="/"><img src="resources/lightbulb.png" alt="Home"></a>
     </div>
-  
-    <script>
-      function adjustMainContentPadding() {
-        var headerHeight = document.querySelector('.header').offsetHeight;
-            document.querySelector('.main-content').style.paddingTop = headerHeight + 'px';
-      }
-    
-      window.addEventListener('load', adjustMainContentPadding);
-      window.addEventListener('resize', adjustMainContentPadding);
-    
-      window.onscroll = function() {
-        var header = document.querySelector('.header');
-        requestAnimationFrame(function() {
-          if (window.pageYOffset > 100) {
-            header.classList.add('shrink');
-          } else {
-            header.classList.remove('shrink');
-          }
-          adjustMainContentPadding();
-        });
-      };
-    </script>
-  
-  </body>
-  
-</html>
+    <span class="site-title">trumangouldsmith.com</span>
+  </header>
 
+  <div class="page-wrapper">
+    <nav class="sidebar">
+      <a href="/posts" class="nav-btn">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        <span class="nav-tooltip">Posts</span>
+      </a>
+      <a href="/tools" class="nav-btn active">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+        <span class="nav-tooltip">Tools</span>
+      </a>
+      <a href="/interactives" class="nav-btn">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        <span class="nav-tooltip">Interactives</span>
+      </a>
+    </nav>
 
-<script>
-    function calculate() {
-        const currentAge = parseInt(document.getElementById('currentAge').value);
-        const retirementAge = parseInt(document.getElementById('retirementAge').value);
-        const deathAge = parseInt(document.getElementById('deathAge').value);
-        const annualSalary = parseFloat(document.getElementById('annualSalary').value);
-        const salaryIncrease = parseFloat(document.getElementById('salaryIncrease').value);
-        const savingsRate = parseFloat(document.getElementById('savingsRate').value);
-        const interestRate = parseFloat(document.getElementById('interestRate').value);
-        const accountBalance = parseFloat(document.getElementById('accountBalance').value);
+    <main class="main-content">
+      <h1>Retirement Balance Calculator</h1>
 
-        const result = calculateRetirementBal(currentAge, retirementAge, deathAge, annualSalary, salaryIncrease, savingsRate, interestRate, accountBalance);
+      <div id="formError" class="form-error" style="display:none;"></div>
 
-        document.getElementById('result').innerHTML = `
-        <p>You will have ${Number(result.accountBalance).toLocaleString('en-US', { style: 'currency', currency: 'USD' })} in your account at age ${retirementAge}.</p>
-        <p>You can withdraw ${Number(result.monthlyPayment).toLocaleString('en-US', { style: 'currency', currency: 'USD' })} per month after retirement until death at age ${deathAge}.</p>
-        `;
+      <form id="retirementBalForm" onsubmit="event.preventDefault(); calculate();">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="currentAge">Current Age</label>
+            <input type="number" id="currentAge" value="32" min="16" max="100" required>
+          </div>
+          <div class="form-group">
+            <label for="retirementAge">Retirement Age</label>
+            <input type="number" id="retirementAge" value="65" min="16" max="100" required>
+          </div>
+          <div class="form-group">
+            <label for="lifeExpectancy">Life Expectancy</label>
+            <input type="number" id="lifeExpectancy" value="85" min="16" max="120" required>
+          </div>
+        </div>
 
+        <div class="form-row">
+          <div class="form-group">
+            <label for="annualSalary">Annual Salary ($)</label>
+            <input type="number" id="annualSalary" value="65000" min="0" step="1000" required>
+          </div>
+          <div class="form-group">
+            <label for="salaryIncrease">Annual Raise (%)</label>
+            <input type="number" step="0.1" id="salaryIncrease" value="2" min="0" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="savingsRate">Your Contribution (%)</label>
+            <input type="number" step="0.5" id="savingsRate" value="15" min="0" max="100" required>
+          </div>
+          <div class="form-group">
+            <label for="employerMatch">Employer Match (%)</label>
+            <input type="number" step="0.5" id="employerMatch" value="3" min="0" max="100" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="returnRate">Pre-Retirement Return (%)</label>
+            <input type="number" step="0.1" id="returnRate" value="8" min="0" required>
+          </div>
+          <div class="form-group">
+            <label for="retirementReturnRate">Post-Retirement Return (%)</label>
+            <input type="number" step="0.1" id="retirementReturnRate" value="4" min="0" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="currentBalance">Current Balance ($)</label>
+          <input type="number" id="currentBalance" value="25000" min="0" step="1000" required>
+        </div>
+
+        <button type="submit" class="btn">Calculate</button>
+      </form>
+
+      <div id="resultPanel" class="results-panel" style="display:none;">
+        <h2>Results</h2>
+        <div class="result-stats" id="resultStats"></div>
+        <details class="breakdown-details">
+          <summary>Year-by-Year Breakdown</summary>
+          <div class="table-scroll">
+            <table class="breakdown-table">
+              <thead>
+                <tr>
+                  <th>Age</th>
+                  <th>Salary</th>
+                  <th>You Save</th>
+                  <th>Employer</th>
+                  <th>Interest</th>
+                  <th>Balance</th>
+                </tr>
+              </thead>
+              <tbody id="yearTableBody"></tbody>
+            </table>
+          </div>
+        </details>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    const fmt = (n) => n.toLocaleString('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
+
+    function showError(msg) {
+      const el = document.getElementById('formError');
+      el.textContent = msg;
+      el.style.display = 'block';
+      document.getElementById('resultPanel').style.display = 'none';
     }
 
-    function calculateRetirementBal(currentAge, retirementAge, deathAge, realizedAnnualSalary, annualSalaryIncrease, savingsRate, interestRate, accountBalance) {
-        let totalYears = retirementAge - currentAge;
-        let totalMonths = 0;
+    function calculate() {
+      document.getElementById('formError').style.display = 'none';
 
-        for (let month = 0; month < totalYears * 12; month++) {
-            totalMonths++;
-            if (totalMonths % 12 === 0) {
-                realizedAnnualSalary *= (1 + annualSalaryIncrease);
-            }
-            
-            accountBalance += ((realizedAnnualSalary / 12) * savingsRate);
-            accountBalance *= (1 + (interestRate / 12));
+      const currentAge        = parseInt(document.getElementById('currentAge').value);
+      const retirementAge     = parseInt(document.getElementById('retirementAge').value);
+      const lifeExpectancy    = parseInt(document.getElementById('lifeExpectancy').value);
+      const annualSalary      = parseFloat(document.getElementById('annualSalary').value);
+      const salaryIncrease    = parseFloat(document.getElementById('salaryIncrease').value) / 100;
+      const savingsRate       = parseFloat(document.getElementById('savingsRate').value) / 100;
+      const employerMatch     = parseFloat(document.getElementById('employerMatch').value) / 100;
+      const returnRate        = parseFloat(document.getElementById('returnRate').value) / 100;
+      const retReturnRate     = parseFloat(document.getElementById('retirementReturnRate').value) / 100;
+      const currentBalance    = parseFloat(document.getElementById('currentBalance').value);
+
+      if (retirementAge <= currentAge) {
+        return showError('Retirement age must be greater than current age.');
+      }
+      if (lifeExpectancy <= retirementAge) {
+        return showError('Life expectancy must be greater than retirement age.');
+      }
+      if (annualSalary < 0 || currentBalance < 0) {
+        return showError('Salary and balance cannot be negative.');
+      }
+
+      let balance = currentBalance;
+      let totalPersonal = 0;
+      let totalEmployer = 0;
+      let totalInterest = 0;
+      let salary = annualSalary;
+      const yearlyData = [];
+      const workingYears = retirementAge - currentAge;
+
+      for (let year = 0; year < workingYears; year++) {
+        if (year > 0) salary *= (1 + salaryIncrease);
+
+        let yrPersonal = 0, yrEmployer = 0, yrInterest = 0;
+
+        for (let m = 0; m < 12; m++) {
+          const personal = (salary / 12) * savingsRate;
+          const employer = (salary / 12) * employerMatch;
+          balance += personal + employer;
+          yrPersonal += personal;
+          yrEmployer += employer;
+
+          const interest = balance * (returnRate / 12);
+          balance += interest;
+          yrInterest += interest;
         }
 
-        let retirementInterestRate = 0.04;
-        let totalYearsAfterRetirement = deathAge - retirementAge;
-        let numerator = (accountBalance * (retirementInterestRate / 12));
-        let denominator = (1 - (1 + (retirementInterestRate / 12)) ** (-totalYearsAfterRetirement * 12));
-        let monthlyPayment = numerator / denominator;
+        totalPersonal += yrPersonal;
+        totalEmployer += yrEmployer;
+        totalInterest += yrInterest;
 
-        return {
-            accountBalance: accountBalance.toFixed(2),
-            monthlyPayment: monthlyPayment.toFixed(2)
-        };
+        yearlyData.push({
+          age: currentAge + year,
+          salary, personal: yrPersonal, employer: yrEmployer,
+          interest: yrInterest, balance
+        });
+      }
+
+      const retirementYears = lifeExpectancy - retirementAge;
+      const monthlyRate = retReturnRate / 12;
+      const retMonths = retirementYears * 12;
+      const monthlyWithdrawal = monthlyRate === 0
+        ? balance / retMonths
+        : (balance * monthlyRate) / (1 - Math.pow(1 + monthlyRate, -retMonths));
+
+      const panel = document.getElementById('resultPanel');
+      panel.style.display = 'block';
+
+      document.getElementById('resultStats').innerHTML = `
+        <div class="stat-card highlight">
+          <span class="stat-label">Balance at Retirement (age ${retirementAge})</span>
+          <span class="stat-value">${fmt(balance)}</span>
+        </div>
+        <div class="stat-card highlight">
+          <span class="stat-label">Monthly Withdrawal (${retirementYears} years)</span>
+          <span class="stat-value">${fmt(monthlyWithdrawal)}</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">Your Contributions</span>
+          <span class="stat-value">${fmt(totalPersonal)}</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">Employer Contributions</span>
+          <span class="stat-value">${fmt(totalEmployer)}</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">Interest Earned</span>
+          <span class="stat-value">${fmt(totalInterest)}</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">Growth Multiple</span>
+          <span class="stat-value">${(balance / (currentBalance + totalPersonal + totalEmployer)).toFixed(1)}x</span>
+        </div>
+      `;
+
+      const tbody = document.getElementById('yearTableBody');
+      tbody.innerHTML = yearlyData.map(d => `
+        <tr>
+          <td>${d.age}</td>
+          <td>${fmt(d.salary)}</td>
+          <td>${fmt(d.personal)}</td>
+          <td>${fmt(d.employer)}</td>
+          <td>${fmt(d.interest)}</td>
+          <td>${fmt(d.balance)}</td>
+        </tr>
+      `).join('');
+
+      panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
-</script>
+  </script>
+
+  <script>
+    document.querySelector('.logo-bubble').addEventListener('click', function() {
+      this.classList.remove('clicked');
+      void this.offsetWidth;
+      this.classList.add('clicked');
+      this.addEventListener('animationend', function handler() {
+        this.classList.remove('clicked');
+        this.removeEventListener('animationend', handler);
+      });
+    });
+  </script>
+</body>
+</html>

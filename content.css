@@ -1,25 +1,381 @@
-/* ============================================================
-   DISABLE HOVER EFFECTS ON CARD IN THE SUBPAGE
-   ============================================================ */
-/* Reset the hover effect for the card on subpage */
-.middlecolumn .card:hover {
-  background-color: #FFFFFF; /* Reset background color to default */
-  padding-right: 20px; /* Reset padding-right to default */
-}
+/* ---- SUBPAGE HEADING ---- */
 
-/* Optional: Reset hover effects for the card image */
-.middlecolumn .cardimg:hover {
-  filter: none; /* Remove any filter effect (e.g., brightness or saturation) */
+.main-content > h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  color: #3E2723;
+  margin-bottom: 24px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #C9A84C;
 }
 
 
-/* ============================================================
-   BODY STYLING
-   ============================================================ */
-body {
-  font-family: 'Poppins', sans-serif; /* Set default font to Poppins */
-  background-color: #FFFAF0; /* Light cream background color */
-  margin: 0; /* Remove default margin */
-  padding: 0; /* Remove default padding */
-  padding-top: 100px; /* Increase space for the fixed header */
+/* ---- PAGE INTRO ---- */
+
+.page-intro {
+  font-size: 15px;
+  color: #5D4037;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+
+/* ---- FORM LAYOUT ---- */
+
+.form-row {
+  display: flex;
+  gap: 16px;
+}
+
+.form-row .form-group {
+  flex: 1;
+  min-width: 0;
+}
+
+.form-error {
+  background: #F5E6D0;
+  color: #8B4513;
+  padding: 12px 16px;
+  border-radius: 6px;
+  border-left: 3px solid #8B4513;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+
+
+/* ---- FORM CONTROLS ---- */
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 500;
+  font-size: 14px;
+  margin-bottom: 4px;
+  color: #3E2723;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  max-width: 340px;
+  padding: 8px 12px;
+  border: 1px solid #d4c8b8;
+  border-radius: 6px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  background: #FFFCF7;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #C9A84C;
+  box-shadow: 0 0 0 2px rgba(201, 168, 76, 0.2);
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 22px;
+  background: #3E2723;
+  color: #F5F0E8;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+
+.btn:hover {
+  background: #2C1810;
+  border-color: #C9A84C;
+  box-shadow: 0 0 0 1px rgba(201, 168, 76, 0.3);
+}
+
+.btn + .btn {
+  margin-left: 8px;
+}
+
+.btn-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+
+/* ---- RESULTS PANEL ---- */
+
+.results-panel {
+  margin-top: 24px;
+  padding: 20px;
+  background: #FFFCF7;
+  border-radius: 8px;
+  border: 1px solid #d4c8b8;
+  border-left: 3px solid #C9A84C;
+}
+
+.results-panel h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  margin-bottom: 12px;
+  color: #3E2723;
+}
+
+.results-panel p {
+  line-height: 1.6;
+}
+
+
+/* ---- RESULT STAT CARDS ---- */
+
+.result-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.stat-card {
+  background: #F5F0E8;
+  border-radius: 8px;
+  padding: 16px;
+  border-left: 3px solid #d4c8b8;
+}
+
+.stat-card.highlight {
+  border-left-color: #C9A84C;
+}
+
+.stat-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  color: #8B7355;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.stat-value {
+  display: block;
+  font-size: 22px;
+  font-weight: 600;
+  color: #3E2723;
+}
+
+
+/* ---- BREAKDOWN TABLE ---- */
+
+.breakdown-details {
+  margin-top: 8px;
+}
+
+.breakdown-details summary {
+  cursor: pointer;
+  font-weight: 500;
+  color: #5D4037;
+  padding: 10px 0;
+  user-select: none;
+  transition: color 0.15s;
+}
+
+.breakdown-details summary:hover {
+  color: #C9A84C;
+}
+
+.table-scroll {
+  overflow-x: auto;
+  margin-top: 8px;
+}
+
+.breakdown-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  min-width: 560px;
+}
+
+.breakdown-table th,
+.breakdown-table td {
+  padding: 10px 12px;
+  text-align: right;
+  border-bottom: 1px solid #d4c8b8;
+}
+
+.breakdown-table th {
+  background: #3E2723;
+  color: #C9A84C;
+  font-weight: 500;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  position: sticky;
+  top: 0;
+}
+
+.breakdown-table th:first-child,
+.breakdown-table td:first-child {
+  text-align: left;
+}
+
+.breakdown-table tbody tr:hover {
+  background: rgba(201, 168, 76, 0.08);
+}
+
+.breakdown-table tbody tr:last-child td {
+  font-weight: 600;
+  border-bottom: 2px solid #C9A84C;
+}
+
+
+/* ---- TRACKER CARDS (initiative) ---- */
+
+.tracker-card {
+  background: #FFFCF7;
+  padding: 14px 18px;
+  margin-bottom: 8px;
+  border-radius: 8px;
+  border-left: 3px solid transparent;
+  box-shadow: 0 1px 4px rgba(44, 24, 16, 0.08);
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.15s, border-color 0.15s;
+}
+
+.tracker-card:hover {
+  background-color: #F5F0E8;
+  border-left-color: #C9A84C;
+}
+
+#characterList {
+  list-style: none;
+  margin-top: 12px;
+}
+
+#characterList li {
+  padding: 8px 14px;
+  background: #FFFCF7;
+  border-radius: 6px;
+  margin-bottom: 6px;
+  border: 1px solid #d4c8b8;
+}
+
+
+/* ---- GAME OF LIFE GRID ---- */
+
+.gol-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.speed-control {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: 8px;
+  font-size: 14px;
+  color: #5D4037;
+}
+
+.speed-label {
+  font-weight: 500;
+}
+
+.speed-input {
+  width: 56px;
+  padding: 6px 8px;
+  border: 1px solid #d4c8b8;
+  border-radius: 6px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  text-align: center;
+  background: #FFFCF7;
+}
+
+.speed-input:focus {
+  outline: none;
+  border-color: #C9A84C;
+  box-shadow: 0 0 0 2px rgba(201, 168, 76, 0.2);
+}
+
+#grid {
+  display: inline-grid;
+  user-select: none;
+  max-width: 900px;
+  width: 100%;
+  height: 500px;
+  background: #fff;
+  border: 2px solid #C9A84C;
+  border-radius: 6px;
+}
+
+.cell {
+  background-color: #222;
+  border-radius: 2px;
+  transition: background-color 0.1s;
+  cursor: pointer;
+  will-change: background-color;
+}
+
+.cell.alive {
+  background-color: #C9A84C;
+}
+
+
+/* ---- BLOG POST CONTENT ---- */
+
+.post-content {
+  line-height: 1.8;
+  font-size: 16px;
+}
+
+.post-content img {
+  max-width: 100%;
+  border-radius: 8px;
+  margin: 16px 0;
+}
+
+.coming-soon {
+  text-align: center;
+  padding: 60px 20px;
+  color: #8B7355;
+}
+
+.coming-soon h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  color: #3E2723;
+  margin-bottom: 12px;
+}
+
+.coming-soon p {
+  font-size: 16px;
+  color: #8B7355;
+}
+
+
+/* ---- MOBILE OVERRIDES ---- */
+
+@media screen and (max-width: 768px) {
+  .form-row {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .result-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .stat-value {
+    font-size: 18px;
+  }
 }

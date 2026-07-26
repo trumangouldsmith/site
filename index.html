@@ -4,122 +4,93 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Truman Gouldsmith</title>
-  
+
   <link rel="apple-touch-icon" sizes="180x180" href="resources/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="resources/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="resources/favicon-16x16.png">
 
   <link rel="stylesheet" href="styles.css">
 </head>
+<body>
 
+  <header class="site-header">
+    <div class="logo-bubble">
+      <a href="/"><img src="resources/lightbulb.png" alt="Home"></a>
+    </div>
+    <span class="site-title">trumangouldsmith.com</span>
+  </header>
 
-<body class="main-content">
+  <div class="page-wrapper">
+    <nav class="sidebar">
+      <a href="/posts" class="nav-btn">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        <span class="nav-tooltip">Posts</span>
+      </a>
+      <a href="/tools" class="nav-btn">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+        <span class="nav-tooltip">Tools</span>
+      </a>
+      <a href="/interactives" class="nav-btn">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        <span class="nav-tooltip">Interactives</span>
+      </a>
+    </nav>
 
-  <!-- Header Section (Fixed to the top) -->
-  <div class="header">
-    <h2>Truman Gouldsmith</h2>
-    <h3>A recreational mathematician with both enough and not enough free time.</h3>
-  </div>
+    <main class="main-content">
+      <section id="posts" class="content-section">
+        <h2>Posts</h2>
+        <div class="card-grid">
+          <a href="/a_lazy_and_not_lazy_attempt_at_solving_a_wooden_puzzle" class="content-card">
+            <img src="resources/chess_puzzle_pattern.jpeg" alt="Wooden puzzle" class="card-img">
+            <h3>A Lazy and Not Lazy Attempt at Solving a Wooden Puzzle</h3>
+            <p>My friend got me a puzzle for my birthday and I was lazy and not lazy when solving it.</p>
+            <span class="card-tag">Coming Soon</span>
+          </a>
+          <a href="/dice_puzzle_induced_headache_and_prime_factorization" class="content-card">
+            <img src="resources/weird_die.svg" alt="Weird die" class="card-img">
+            <h3>Dice-Puzzle-Induced-Headache and Prime Factorization</h3>
+            <p>I was looking at an old puzzle and was not pleased.</p>
+            <span class="card-tag">Coming Soon</span>
+          </a>
+        </div>
+      </section>
 
-  <!-- Main content of the page -->
-  <div class="row">
-    
-    <!-- Left Column -->
-    <div class="leftcolumn">
-      <div class="card">
-        <h2>About Me</h2>
-        <p>This section was in the html template I used. Make up an interesting story or something.</p>
-      </div>
-
-      <div class="card">
+      <section id="tools" class="content-section">
         <h2>Tools</h2>
-        <p style="color: blue;"><a href="/retirement_calculator">Retirement Calculator</a></p>
-        <p style="color: blue;"><a href="/initiative">Initiative Tool</a></p>
-
-      </div>
-
-    </div>
-
-    <!-- Middle Column -->
-    <div class="middlecolumn">
-      <a href="/a_lazy_and_not_lazy_attempt_at_solving_a_wooden_puzzle" class="no-style-link">
-        <div class="card">
-          <h2>A Lazy and Not Lazy Attempt at Solving a Wooden Puzzle</h2>
-          <h4>Coming Soon</h4>
-          <img class="cardimg" src="resources/chess_puzzle_pattern.jpeg" alt="Wooden puzzle pattern">
-          <p>My friend got me a puzzle for my birthday and I was lazy and not lazy when solving it.</p>
-          <div class="read-more">Read<br>more<br>&gt;&gt;&gt;</div>
+        <div class="card-grid">
+          <a href="/retirement_calculator" class="content-card">
+            <h3>Retirement Balance Calculator</h3>
+            <p>Project your retirement balance with salary growth, employer matching, compound returns, and a year-by-year breakdown.</p>
+          </a>
+          <a href="/initiative" class="content-card">
+            <h3>D&amp;D Initiative Tracker</h3>
+            <p>Track combat initiative order for tabletop RPGs. Add characters, sort by initiative, and rotate turns.</p>
+          </a>
         </div>
-      </a>
+      </section>
 
-      <a href="/dice_puzzle_induced_headache_and_prime_factorization" class="no-style-link">
-        <div class="card">
-          <h2>Dice-Puzzle-Induced-Headache and Prime Factorization</h2>
-          <h4>Coming Soon</h4>
-          <img class="cardimg" src="resources/weird_die.svg" alt="Weird die">
-          <p>I was looking at an old puzzle and was not pleased.</p>
-          <div class="read-more">Read<br>more<br>&gt;&gt;&gt;</div>
+      <section id="interactives" class="content-section">
+        <h2>Interactives</h2>
+        <div class="card-grid">
+          <a href="/jcgol" class="content-card">
+            <h3>Conway's Game of Life</h3>
+            <p>Interactive cellular automaton. Click cells to seed the grid, then watch patterns evolve.</p>
+          </a>
         </div>
-      </a>
-
-      <div class="card">
-        <h2>Post TBD</h2>
-        <h4>Coming Soon</h4>
-      </div>
-
-      <div class="card">
-        <h2>Post TBD</h2>
-        <h4>Coming Soon</h4>
-      </div>
-
-      <div class="card">
-        <h2>Post TBD</h2>
-        <h4>Coming Soon</h4>
-      </div>
-    </div> <!-- end of middle column-->
-    
-    <!-- Right Column -->
-    <div class="rightcolumn">
-      <div class="card">
-        <h2>Favorite Posts</h2>
-        <p>None so far.</p>
-      </div>
-    </div>
-  </div> <!-- end of row -->
-
-  <!-- Footer Section -->
-  <div class="footer">
-    <h2>Footer? Barely know her...</h2>
+      </section>
+    </main>
   </div>
 
-  <!-- JavaScript for Scroll Effects -->
   <script>
-    // Function to update padding of the main content based on header height
-    function adjustMainContentPadding() {
-      // Get the height of the header (including padding, etc.)
-      var headerHeight = document.querySelector('.header').offsetHeight;
-  
-      // Set the padding-top of .main-content to the height of the header
-      document.querySelector('.main-content').style.paddingTop = headerHeight + 'px';
-    }
-  
-    // Call the function on page load and whenever the window is resized
-    window.addEventListener('load', adjustMainContentPadding);
-    window.addEventListener('resize', adjustMainContentPadding);
-  
-    // Adjust padding when the header shrinks on scroll
-    window.onscroll = function() {
-      var header = document.querySelector('.header');
-      requestAnimationFrame(function() {
-        if (window.pageYOffset > 100) {
-          header.classList.add('shrink');
-        } else {
-          header.classList.remove('shrink');
-        }
-        adjustMainContentPadding();  // Recalculate the padding after the header changes size
+    document.querySelector('.logo-bubble').addEventListener('click', function() {
+      this.classList.remove('clicked');
+      void this.offsetWidth;
+      this.classList.add('clicked');
+      this.addEventListener('animationend', function handler() {
+        this.classList.remove('clicked');
+        this.removeEventListener('animationend', handler);
       });
-    };
+    });
   </script>
-
 </body>
 </html>
