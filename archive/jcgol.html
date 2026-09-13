@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>John Conway's Game of Life - Responsive Grid</title>
+
+  <link rel="apple-touch-icon" sizes="180x180" href="resources/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="resources/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="resources/favicon-16x16.png" />
+
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="content.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    :root {
+      --cell-size: 20px;
+      --cell-margin: 1px;
+    }
+
+    #grid {
+      display: grid;
+      margin: 20px 0;
+      user-select: none;
+      /* Width and height can be set or flexible */
+      width: 100%; /* full width of container */
+      max-width: 1000px; /* optional max width */
+      height: 600px; /* fixed height or you can make dynamic */
+      background: #111;
+      border: 1px solid #444;
+    }
+
+    .cell {
+      width: var(--cell-size);
+      height: var(--cell-size);
+      margin: var(--cell-margin);
+      background-color: #222;
+      border-radius: 2px;
+      transition: background-color 0.1s;
+      cursor: pointer; 
+      will-change: background-color;
+    }
+
+    .cell.alive {
+      background-color: limegreen;
+    }
+  </style>
+</head>
+
+<body class="content-page">
+  <div class="header">
+    <a href="/" class="home-icon"><i class="fas fa-home"></i></a>
+    <h2>John Conway's Game of Life</h2>
+  </div>
+
+  <div class="row">
+    <div class="leftcolumn">
+      <div class="card">
+        <h2>About Me</h2>
+        <p>This section was in the html template I used. Make up an interesting story or something.</p>
+      </div>
+    </div>
+
+    <div class="middlecolumn">
+      <div class="card">
+        <div>
+          <button id="startBtn">Start</button>
+          <button id="clearBtn">Clear</button>
+        </div>
+
+        <div id="grid"></div>
+
+        <script>
+          const grid = document.getElementById('grid');
+          const startBtn = document.getElementById('startBtn');
+          const clearBtn = document.getElementById('clearBtn');
+
+          const cellSize = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--cell-size'));
+          const cellMargin = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--cell-margin'));
+
+          let rows, cols, totalCells;
+          let cells = [];
+          let currentState = [];
+          let nextState = [];
+          let running = false;
+          let animationId = null;
+
+          function calculateGridDimensions() {
+            const gridWidth = grid.clientWidth;
+            const gridHeight = grid.clientHeight;
+            const cellTotalSize = cellSize + 2 * cellMargin;
+
+            cols = Math.floor(gridWidth / cellTotalSize);
+            rows = Math.floor(gridHeight / cellTotalSize);
+            totalCells = rows * cols;
+          }
+
+          function createGrid() {
+            // Clear previous grid & state
+            grid.innerHTML = '';
+            cells = new Array(totalCells);
+            currentState = new Array(totalCells).fill(false);
+            nextState = new Array(totalCells).fill(false);
+
+            // Update CSS grid template-columns dynamically
+            grid.style.gridTemplateColumns = `repeat(${cols}, calc(${cellSize}px + 2 * ${cellMargin}px))`;
+
+            const frag = document.createDocumentFragment();
+            for(let i = 0; i < totalCells; i++) {
+              const cell = document.createElement('div');
+              cell.classList.add('cell');
+              cell.dataset.index = i;
+              cell.addEventListener('click', () => {
+                currentState[i] = !currentState[i];
+                updateCellVisual(i);
+              });
+              frag.appendChild(cell);
+              cells[i] = cell;
+            }
+            grid.appendChild(frag);
+          }
+
+          function updateCellVisual(i) {
+            if(currentState[i]) {
+              cells[i].classList.add('alive');
+            } else {
+              cells[i].classList.remove('alive');
+            }
+          }
+
+          function getIndex(r, c) {
+            if(r < 0 || r >= rows || c < 0 || c >= cols) return -1;
+            return r * cols + c;
+          }
+
+          function countAliveNeighbors(i) {
+            const r = Math.floor(i / cols);
+            const c = i % cols;
+            let count = 0;
+            for(let dr = -1; dr <= 1; dr++) {
+              for(let dc = -1; dc <= 1; dc++) {
+                if(dr === 0 && dc === 0) continue;
+                const ni = getIndex(r + dr, c + dc);
+                if(ni !== -1 && currentState[ni]) count++;
+              }
+            }
+            return count;
+          }
+
+          function step() {
+            for(let i = 0; i < totalCells; i++) {
+              const alive = currentState[i];
+              const neighbors = countAliveNeighbors(i);
+              if(alive) {
+                nextState[i] = neighbors === 2 || neighbors === 3;
+              } else {
+                nextState[i] = neighbors === 3;
+              }
+            }
+            // Swap states
+            [currentState, nextState] = [nextState, currentState];
+
+            for(let i = 0; i < totalCells; i++) {
+              updateCellVisual(i);
+            }
+          }
+
+          function run() {
+            step();
+            animationId = requestAnimationFrame(run);
+          }
+
+          startBtn.addEventListener('click', () => {
+            if(running) {
+              cancelAnimationFrame(animationId);
+              running = false;
+              startBtn.textContent = 'Start';
+            } else {
+              running = true;
+              startBtn.textContent = 'Pause';
+              animationId = requestAnimationFrame(run);
+            }
+          });
+
+          clearBtn.addEventListener('click', () => {
+            if(running) {
+              cancelAnimationFrame(animationId);
+              running = false;
+              startBtn.textContent = 'Start';
+            }
+            currentState.fill(false);
+            for(let i = 0; i < totalCells; i++) {
+              updateCellVisual(i);
+            }
+          });
+
+          function init() {
+            calculateGridDimensions();
+            createGrid();
+          }
+
+          // Initialize on page load
+          window.addEventListener('load', init);
+
+          // Recalculate and recreate grid on window resize (debounced)
+          let resizeTimeout;
+          window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+              if(running) {
+                cancelAnimationFrame(animationId);
+                running = false;
+                startBtn.textContent = 'Start';
+              }
+              init();
+            }, 200);
+          });
+        </script>
+      </div>
+    </div>
+
+    <div class="rightcolumn">
+      <div class="card">
+        <h2>Favorite Posts</h2>
+        <p>None so far.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <h2>Footer? Barely know her...</h2>
+  </div>
+</body>
+</html>
